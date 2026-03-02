@@ -1,11 +1,16 @@
-CC = C:/msys64/ucrt64/bin/gcc.exe
-CFLAGS = -ansi -Wall -pedantic
+# Define the compiler path for the GCC executable
+CC = C:/msys64/ucrt64/bin/gcc.exe 
+# Set compiler flags for ANSI C standard and strict warnings
+CFLAGS = -ansi -Wall -pedantic 
 
-remove_blanks: Shani_Peled_remove_blanks.o
-	$(CC) $(CFLAGS) -o shani_peled_excercise_11_remove_blanks.exe Shani_Peled_remove_blanks.o
+# Target to link the final executable from object files
+remove_blanks: Shani_Peled_remove_blanks.o 
+	$(CC) $(CFLAGS) -o shani_peled_excercise_11_remove_blanks.exe Shani_Peled_remove_blanks.o 
 
-Shani_Peled_remove_blanks.o: Shani_Peled_remove_blanks.c Shani_Peled_remove_blanks.h
-	$(CC) $(CFLAGS) -c Shani_Peled_remove_blanks.c
+# Target to compile the C source file into an object file
+Shani_Peled_remove_blanks.o: Shani_Peled_remove_blanks.c Shani_Peled_remove_blanks.h 
+	$(CC) $(CFLAGS) -c Shani_Peled_remove_blanks.c 
 
-clean:
+# Target to remove temporary files and the executable
+clean: 
 	del /f *.o shani_peled_excercise_11_remove_blanks.exe

@@ -1,5 +1,5 @@
-#ifndef SHANI_PELED_REMOVE_BLANKS_H
-#define SHANI_PELED_REMOVE_BLANKS_H
+#ifndef SHANI_PELED_REMOVE_BLANKS_H /* Directive to prevent multiple inclusions of this header file during compilation */
+#define SHANI_PELED_REMOVE_BLANKS_H /* Define the macro to mark that this header has been processed */
 
 /* * Function: Shani_Peled_remove_blanks
  * --------------------
@@ -8,6 +8,7 @@
  *
  * str: The null-terminated string to be modified.
  */
-void remove_blanks(char *str);
 
-#endif
+void remove_blanks(char *str); /* Prototype for the function that strips whitespaces from the input string */
+
+#endif /* End of the include guard to close the ifndef block */

@@ -3,7 +3,7 @@
 #include <string.h> /* Library for string manipulation functions like strlen */
 #include "Shani_Peled_remove_blanks.h" /* Local header file for function prototypes */
 
-#define DEBUG_SHANI /* Macro to enable or disable debug print messages */
+/* #define DEBUG_SHANI  Macro to enable or disable debug print messages */
 #define STRING_MAX_LENGTH 100 /* Constant defining the maximum buffer size for input */
 
 void remove_blanks(char *str) { /* Function to remove all whitespace from a string in-place */
