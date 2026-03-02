@@ -1,8 +1,11 @@
-CC = gcc
+CC = C:/msys64/ucrt64/bin/gcc.exe
 CFLAGS = -ansi -Wall -pedantic
 
 remove_blanks: Shani_Peled_remove_blanks.o
-	$(CC) $(CFLAGS) -o remove_blanks Shani_Peled_remove_blanks.o
+	$(CC) $(CFLAGS) -o shani_peled_excercise_11_remove_blanks.exe Shani_Peled_remove_blanks.o
 
 Shani_Peled_remove_blanks.o: Shani_Peled_remove_blanks.c Shani_Peled_remove_blanks.h
 	$(CC) $(CFLAGS) -c Shani_Peled_remove_blanks.c
+
+clean:
+	del /f *.o shani_peled_excercise_11_remove_blanks.exe
