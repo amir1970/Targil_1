@@ -1,0 +1,8 @@
+CC = gcc
+CFLAGS = -ansi -Wall -pedantic
+
+remove_blanks: Shani_Peled_remove_blanks.o
+	$(CC) $(CFLAGS) -o remove_blanks Shani_Peled_remove_blanks.o
+
+Shani_Peled_remove_blanks.o: Shani_Peled_remove_blanks.c Shani_Peled_remove_blanks.h
+	$(CC) $(CFLAGS) -c Shani_Peled_remove_blanks.c
