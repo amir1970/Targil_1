@@ -6,38 +6,51 @@
 /* #define DEBUG_SHANI  Macro to enable or disable debug print messages */
 #define STRING_MAX_LENGTH 100 /* Constant defining the maximum buffer size for input */
 
-void remove_blanks(char *str) { /* Function to remove all whitespace from a string in-place */
-    char *read_ptr = str; /* Pointer used to traverse and read each character */
-    char *write_ptr = str; /* Pointer used to track where to write non-space characters */
 
-    #ifdef DEBUG_SHANI /* Conditional check to see if debug mode is active */
-    printf("\n******** Shani Peled DEBUG_SHANI msg **************\n"); /* Debug header */
-    printf("Entering remove_blanks function\n"); /* Trace message for function entry */
-    #endif /* End of conditional debug section */
+void remove_blanks(char *str) { /* Function to remove spaces, tabs, and newlines from a string in-place */
+    char *read_ptr = str; /* Pointer used to traverse and read each character from the original string */
+    char *write_ptr = str; /* Pointer used to track the position to write the next valid character */
 
-    if (str == NULL) return; /* Safety check to prevent processing a null pointer */
+    #ifdef DEBUG_SHANI /* Conditional preprocessor directive to check if debug mode is active */
+    printf("\n******** Shani Peled DEBUG_SHANI msg **************\n"); /* Print a visual separator for debug output */
+    printf("Entering remove_blanks function\n"); /* Print a trace message indicating the start of the function */
+    #endif /* End of the conditional debug section */
 
-    while (*read_ptr != '\0') { /* Iterate until the end of the string is reached */
-        if (!isspace((unsigned char)*read_ptr)) { /* Check if current character is not a space */
-            #ifdef DEBUG_SHANI /* Debug info for kept characters */
-            printf("Keeping char: '%c'\n", *read_ptr); /* Print character being preserved */
+    if (str == NULL) return; /* Safety check: exit the function immediately if a null pointer is passed */
+
+    /* Mandatory assignment requirement: Print the string BEFORE modifications */
+    printf("The original string is:\n\"%s\"\n", str); /* Display the unmodified string surrounded by quotes */
+
+    while (*read_ptr != '\0') { /* Loop through the string until the null terminator is encountered */
+        
+        /* Check if the current character is NOT a space, NOT a tab, and NOT a newline */
+        if (*read_ptr != ' ' && *read_ptr != '\t' && *read_ptr != '\n') { 
+            #ifdef DEBUG_SHANI /* Check if debug mode is enabled for character preservation */
+            printf("Keeping char: '%c'\n", *read_ptr); /* Debug print showing which character is being kept */
             #endif /* End of debug section */
-            *write_ptr = *read_ptr; /* Move the valid character to the write position */
-            write_ptr++; /* Advance write pointer to the next available slot */
-        } else { /* Executed if the character is a whitespace */
-            #ifdef DEBUG_SHANI /* Debug info for removed spaces */
-            printf("Removing blank space\n"); /* Trace message for space removal */
+            
+            *write_ptr = *read_ptr; /* Copy the valid character to the current write position */
+            write_ptr++; /* Advance the write pointer to the next available slot */
+        } else { /* Executed if the character IS a space, tab, or newline */
+            #ifdef DEBUG_SHANI /* Check if debug mode is enabled for character removal */
+            printf("Removing blank space\n"); /* Debug print indicating a whitespace character is being skipped */
             #endif /* End of debug section */
-        } /* End of if-else block */
-        read_ptr++; /* Always advance the read pointer to the next character */
-    } /* End of while loop */
-    *write_ptr = '\0'; /* Terminate the modified string with a null character */
+        } /* End of the if-else block */
+        
+        read_ptr++; /* Always advance the read pointer to evaluate the next character in the string */
+    } /* End of the while loop */
+    
+    *write_ptr = '\0'; /* Add a null terminator at the final write position to properly close the new string */
+
+    /* Mandatory assignment requirement: Print the string AFTER modifications */
+    printf("The string at the end of the function:\n\"%s\"\n", str); /* Display the cleaned string surrounded by quotes */
 
     #ifdef DEBUG_SHANI /* Final debug message */
     printf("Function finished processing\n"); /* Trace message for function completion */
     printf("*********************************************\n\n"); /* Debug footer */
     #endif /* End of debug section */
 } /* End of remove_blanks function */
+
 
 int main() { /* Main entry point of the program */
     int c; /* Temporary variable for character clearing */
@@ -63,9 +76,9 @@ int main() { /* Main entry point of the program */
             continue; /* Skip processing and restart loop */
         } /* End of short string check */
 
-        printf("The Input string:\n\"%s\"", line); /* Display the original string with quotes */
-        remove_blanks(line); /* Call the function to strip whitespaces */
-        printf("The string at the end of the function:\n\"%s\"\n", line); /* Display result */
+        /* Called function handles all required printing (Before & After) */
+        remove_blanks(line); 
+        
         printf("\nPlease enter next string (or Ctrl+Z):\n"); /* Prompt for next iteration */
     } /* End of while loop */
 
